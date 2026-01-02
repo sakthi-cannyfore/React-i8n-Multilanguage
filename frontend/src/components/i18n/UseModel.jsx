@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Visual } from "../Visual";
 
 const UseModel = () => {
   const [activeLang, setActiveLang] = useState("English");
   const { t, i18n } = useTranslation();
+
+  const description = t("greeting");
 
   const changeButon = (lang) => {
     i18n.changeLanguage(lang);
@@ -15,21 +18,22 @@ const UseModel = () => {
      ${activeLang === lang ? "bg-red-500 text-white" : "bg-white text-black"}`;
 
   return (
-    <div className="flex gap-3">
-      {t("logo")}
-      <button className={buttonClass("en")} onClick={() => changeButon("en")}>
-        English
-      </button>
+    <div>
+      <div className="flex gap-3">
+        {t("logo")}
+        <button className={buttonClass("en")} onClick={() => changeButon("en")}>
+          English
+        </button>
 
-      <button className={buttonClass("fr")} onClick={() => changeButon("fr")}>
-        French
-      </button>
+        <button className={buttonClass("fr")} onClick={() => changeButon("fr")}>
+          French
+        </button>
 
-      <button className={buttonClass("hi")} onClick={() => changeButon("hi")}>
-        Hindi
-      </button>
-
-      <h1>{t("greeting")}</h1>
+        <button className={buttonClass("hi")} onClick={() => changeButon("hi")}>
+          Hindi
+        </button>
+      </div>
+      <Visual description={description} />
     </div>
   );
 };
